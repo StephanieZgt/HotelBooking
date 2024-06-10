@@ -1,0 +1,170 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2 {
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex_space{
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    border: none;
+    background: none;
+    outline: none;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.primary-btn {
+    padding: 15px 40px;
+    background: #7fc142;
+    font-weight: bold;
+    color: white;
+}
+
+.secondary-btn {
+    padding: 15px 40px;
+    background: none;
+    border: 2px solid white;
+    font-weight: bold;
+    color: white;
+}
+
+.container {
+    max-width: 85%;
+    margin: auto;
+}
+
+header {
+    height: 10vh;
+    line-height: 10vh;
+    padding: 0 20px;
+}
+
+header img {
+    margin: 20px 0;
+}
+
+header ul {
+    display: inline-block;
+}
+
+header ul li {
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+header ul li a{
+    color: #000;
+    margin: 0 10px;
+    transition: 0.5s;
+}
+
+header ul li a:hover {
+    color: #7fc142;
+}
+
+header i {
+    margin: 0 20px;
+}
+
+header button {
+    padding: 13px 40px;
+}
+
+header .navlinks span {
+    display: none;
+}
+
+/*BOOK*/
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-gap: 20px;
+}
+
+input {
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+.book {
+    padding: 40px 0;
+    background: #282834;
+    color: #fff;
+}
+
+h1 {
+    font-family: serif;
+}
+
+.book h1 {
+    font-size: 28px;
+}
+
+.book h1 span {
+    color: #7fc142;
+}
+
+.book input {
+    padding: 20px;
+}
+
+.book input:nth-last-child(1){
+    background: #7fc142;
+    color: #fff;
+}
+
+.reservation-summary {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('image/R\ \(2\).jpeg');
+    background-size: cover;
+    background-position: center
+    padding 0;
+}
+
+.banniere {
+    position: relative;
+    background-color: white;
+    height: 75px; 
+    width: 100%; 
+    margin: 0;
+    padding: 0;
+}

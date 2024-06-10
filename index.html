@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css"/>
+    <title>Formulaire</title>
+</head>
+<body>
+    <header>
+        <div class="banniere">
+        <div class="content flex_space">
+            <div class="logo">
+                <img src="" alt="Logo" href="#home" width="40%">
+            </div>
+            <div class="navlinks">
+                <ul id="menulist">
+                    <li><a href="#home">Accueil</a></li> 
+                    <li><a href="#contact">Contact</a></li>
+                    <li><i class="fa fa-search"></i></li>
+                    <li><button class="primary-btn">BOOK NOW</button></li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </header>
+
+        <div class="contenu">
+        <section class="book">
+            <div class="container flex_space">
+                <div class="text">
+                    <h1> <span>Book </span> Your Rooms </h1>
+                </div>
+                <div class="form">
+                    <form class="grid" id="reservationForm">
+                        <input type="date" placeholder="Date Arrive" id="dateArrive">
+                        <input type="date" placeholder="Date Depart" id="dateDepart">
+                        <input type="number" placeholder="Adultes" id="adults" min="0">
+                        <input type="number" placeholder="Enfant" id="children" min="0">
+                        <div id="childrenAges"></div> 
+                        <input type="number" placeholder="Chambres" id="rooms" min="0">
+                        <input type="submit" value="Valider">
+                        <input type="reset" value="Effacer"></input>
+                    </form>
+                </div>
+            </div>
+        </section>
+        </div>
+    </header>
+
+    <div id="reservationSummary" class="reservation-summary"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('reservationForm').reset();
+
+            document.getElementById('children').addEventListener('input', function () {
+                var childrenCount = parseInt(this.value);
+                var childrenAgesContainer = document.getElementById('childrenAges');
+                childrenAgesContainer.innerHTML = '';
+
+                for (var i = 0; i < childrenCount; i++) {
+                    var input = document.createElement('input');
+                    input.type = 'number';
+                    input.placeholder = 'Âge de l\'enfant ' + (i + 1);
+                    input.min = '0';
+                    input.max = '17';
+                    input.classList.add('child-age');
+                    childrenAgesContainer.appendChild(input);
+                }
+            });
+
+            document.getElementById('reservationForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                var dateArrive = new Date(document.getElementById('dateArrive').value);
+                var dateDepart = new Date(document.getElementById('dateDepart').value);
+                var adults = parseInt(document.getElementById('adults').value);
+                var children = parseInt(document.getElementById('children').value);
+                var rooms = parseInt(document.getElementById('rooms').value);
+
+                if (isNaN(dateArrive) || isNaN(dateDepart) || adults < 0 || children < 0 || rooms < 0) {
+                    alert('Veuillez remplir tous les champs correctement.');
+                    return;
+                }
+
+                if (dateArrive >= dateDepart) {
+                    alert('La date de départ doit être postérieure à la date d\'arrivée.');
+                    return;
+                }
+
+                var childrenAges = [];
+                if (children > 0) {
+                    var ageInputs = document.querySelectorAll('.child-age');
+                    for (var i = 0; i < ageInputs.length; i++) {
+                        var age = parseInt(ageInputs[i].value);
+                        if (isNaN(age) || age < 0 || age > 17) {
+                            alert('Veuillez entrer un âge valide pour chaque enfant.');
+                            return;
+                        }
+                        childrenAges.push(age);
+                    }
+                }
+
+                var summary = "<strong>Récapitulatif de la réservation :</strong><br>";
+                summary += "Date Arrive: " + dateArrive.toLocaleDateString() + "<br>";
+                summary += "Date Depart: " + dateDepart.toLocaleDateString() + "<br>";
+                summary += "Adultes: " + adults + "<br>";
+                summary += "Enfants: " + children + "<br>";
+                if (children > 0) {
+                    summary += "Âges des enfants: " + childrenAges.join(', ') + "<br>";
+                }
+                summary += "Chambres: " + rooms;
+                document.getElementById('reservationSummary').innerHTML = summary;
+            });
+        });
+    </script>
+</body>
+</html>
